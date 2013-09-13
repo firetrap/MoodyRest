@@ -24,7 +24,7 @@ package restPackage;
  */
 public class Criteria {
 	private String key = null;
-	private String value = null;
+	private String value = null;;
 
 	/**
    *
