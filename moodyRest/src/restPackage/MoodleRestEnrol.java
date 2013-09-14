@@ -394,10 +394,12 @@ public class MoodleRestEnrol {
 		for (int i = 0; i < v.size(); i++) {
 			courses[i] = v.get(i);
 		}
-		v.removeAllElements();
-		for (int i = 0; i < courses.length; i++) {
-			courses[i] = MoodleRestCourse.getCourseFromId(courses[i].getId());
-		}
+
+		// MOODY Commented because with this, not all users have capabilities
+		// v.removeAllElements();
+		// for (int i = 0; i < courses.length; i++) {
+		// courses[i] = MoodleRestCourse.getCourseFromId(courses[i].getId());
+		// }
 		return courses;
 	}
 
