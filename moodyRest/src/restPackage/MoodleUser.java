@@ -51,6 +51,7 @@ public class MoodleUser {
 	private ArrayList<UserEnrolledCourse> enrolledcourses = null;
 	private Long firstaccess = null;
 	private String firstname = null;
+	private String fullname = null;
 	private ArrayList<UserGroup> groups = null;
 	private String icq = null;
 
@@ -720,6 +721,10 @@ public class MoodleUser {
 		if (nodeName.equals("lastname")) {
 			setLastname(content);
 		}
+		if (nodeName.equals("fullname")) {
+			setFullname(content);
+		}
+		
 		if (nodeName.equals("email")) {
 			setEmail(content);
 		}
@@ -899,5 +904,19 @@ public class MoodleUser {
 	 */
 	public void setYahoo(String yahoo) {
 		this.yahoo = yahoo;
+	}
+
+	/**
+	 * @return the fullname
+	 */
+	public String getFullname() {
+		return fullname;
+	}
+
+	/**
+	 * @param fullname the fullname to set
+	 */
+	public void setFullname(String fullname) {
+		this.fullname = fullname;
 	}
 }
