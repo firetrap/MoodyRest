@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +28,7 @@ import java.util.ArrayList;
  * @see MoodleRestUser
  * @author Bill Antonia
  */
-public class MoodleUser {
+public class MoodleUser implements Serializable{
 
 	/**
      *

@@ -18,13 +18,14 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  * @author Bill Antonia
  */
-public class MoodleModAssignSubmissionReturn {
+public class MoodleModAssignSubmissionReturn implements Serializable{
 
 	private ArrayList<MoodleModAssignSubmissions> assignments = null;
 	private ArrayList<MoodleModAssignWarning> warnings = null;

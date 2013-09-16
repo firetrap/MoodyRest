@@ -23,6 +23,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -66,7 +67,7 @@ import org.xml.sax.InputSource;
  * 
  * @author Bill Antonia
  */
-public class MoodleCallRestWebService {
+public class MoodleCallRestWebService implements Serializable{
 
 	private static boolean debug = false;
 	private static boolean legacy = false;

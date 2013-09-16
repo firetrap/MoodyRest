@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to create an object which will hold the parent information of a file
@@ -27,7 +29,7 @@ package restPackage;
  * @author Bill Antonia
  * @see MoodleRestFile
  */
-public class MoodleFileParent {
+public class MoodleFileParent implements Serializable{
 
 	/**
      *

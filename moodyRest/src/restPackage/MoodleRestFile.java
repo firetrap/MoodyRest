@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
@@ -30,7 +31,7 @@ import org.w3c.dom.NodeList;
  * 
  * @author Bill Antonia
  */
-public class MoodleRestFile {
+public class MoodleRestFile implements Serializable{
 
 	/**
 	 * <p>

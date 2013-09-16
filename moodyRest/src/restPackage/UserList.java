@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class UserList {
+public class UserList implements Serializable{
 	private Long courseid = null;
 	private Long userid = null;
 

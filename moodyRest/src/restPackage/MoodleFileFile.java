@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to store the file information results once it has been uploaded
@@ -29,7 +31,7 @@ package restPackage;
  * @author Bill Antonia
  * @see MoodleFileParent
  */
-public class MoodleFileFile extends MoodleFileParent {
+public class MoodleFileFile extends MoodleFileParent implements Serializable{
 
 	private Boolean isdir = false;
 	private String url = null;

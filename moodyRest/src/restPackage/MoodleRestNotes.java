@@ -19,6 +19,7 @@
 package restPackage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.URLEncoder;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,7 +33,7 @@ import org.w3c.dom.NodeList;
  * 
  * @author Bill Antonia
  */
-public class MoodleRestNotes {
+public class MoodleRestNotes implements Serializable{
 
 	// private static final int BUFFER_MAX=4000;
 

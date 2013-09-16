@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Hashtable;
@@ -35,7 +36,7 @@ import org.w3c.dom.NodeList;
  * @see MoodleGroup
  * @see MoodleGroupUser
  */
-public class MoodleRestGroup {
+public class MoodleRestGroup implements Serializable{
 
 	// private static final int BUFFER_MAX=4000;
 

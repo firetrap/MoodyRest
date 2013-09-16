@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to create objects which contain the details of a Moodle note.
@@ -25,7 +27,7 @@ package restPackage;
  * 
  * @author Bill Antonia
  */
-public class MoodleNote {
+public class MoodleNote implements Serializable{
 
 	/**
 	 * <p>

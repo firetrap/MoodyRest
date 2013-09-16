@@ -18,13 +18,14 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  * @author Bill Antonia
  */
-public class MoodleWebService {
+public class MoodleWebService implements Serializable{
 	private Boolean downloadfiles = false;
 	private String firstname = null;
 	private String fullname = null;

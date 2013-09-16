@@ -19,6 +19,7 @@
 package restPackage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Vector;
@@ -39,7 +40,7 @@ import org.w3c.dom.NodeList;
  * @see MoodleEnrolUser
  * @author Bill Antonia
  */
-public class MoodleRestEnrol {
+public class MoodleRestEnrol implements Serializable{
 
 	// private static final int BUFFER_MAX=4000;
 

@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to create an object which will hold the data required to send an
@@ -27,7 +29,7 @@ package restPackage;
  * @author Bill Antonia
  * @see MoodleRestMessage
  */
-public class MoodleMessage {
+public class MoodleMessage implements Serializable{
 
 	private String clientmsgid = null;
 	private String errormessage = null;

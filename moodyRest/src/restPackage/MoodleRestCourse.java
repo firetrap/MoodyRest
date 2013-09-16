@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.ArrayList;
@@ -34,7 +35,7 @@ import org.w3c.dom.NodeList;
  * @author Bill Antonia
  * @see MoodleCourse
  */
-public class MoodleRestCourse {
+public class MoodleRestCourse implements Serializable{
 
 	// private static final int BUFFER_MAX=4000;
 

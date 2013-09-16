@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.logging.Level;
@@ -32,7 +33,7 @@ import org.w3c.dom.NodeList;
  * 
  * @author Bill Antonia
  */
-public class MoodleRestWebService {
+public class MoodleRestWebService implements Serializable{
 
 	// core_webservice_get_site_info
 	/**

@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -29,7 +30,7 @@ import java.util.ArrayList;
  * @author Bill Antonia
  * @see MoodleRestFile
  */
-public class MoodleFileGetFiles {
+public class MoodleFileGetFiles implements Serializable{
 
 	private ArrayList<MoodleFileFile> files = null;
 	private ArrayList<MoodleFileParent> parents = null;

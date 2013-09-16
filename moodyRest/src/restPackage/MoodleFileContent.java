@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to store the file content as a Base64 uuencoded string.
@@ -33,7 +35,7 @@ package restPackage;
  * @author Bill Antonia
  * @see MoodleFileFile
  */
-public class MoodleFileContent extends MoodleFileFile {
+public class MoodleFileContent extends MoodleFileFile implements Serializable{
 
 	/**
      *

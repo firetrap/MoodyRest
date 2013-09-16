@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class UserGroup {
+public class UserGroup implements Serializable{
 
 	private String decription = null;
 	private Long id = null;

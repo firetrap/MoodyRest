@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to create objects to store the information and content of a module of a
@@ -28,7 +30,7 @@ package restPackage;
  * @see MoodleCourseContent
  * @see MoodleRestCourse
  */
-public class MoodleModuleContent {
+public class MoodleModuleContent implements Serializable{
 
 	private String author = null;
 	private String content = null;

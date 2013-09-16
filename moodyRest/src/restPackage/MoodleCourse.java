@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class for MoodleCourse objects. Used when creating new courses or retrieving
@@ -39,7 +41,7 @@ package restPackage;
  * @author Bill Antonia
  * 
  */
-public class MoodleCourse {
+public class MoodleCourse implements Serializable{
 
 	/**
      *

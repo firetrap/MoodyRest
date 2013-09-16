@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class containing the Moodle web services function names as constants.
@@ -25,7 +27,7 @@ package restPackage;
  * 
  * @author Bill Antonia
  */
-public class MoodleServices {
+public class MoodleServices implements Serializable{
 
 	/**
    *

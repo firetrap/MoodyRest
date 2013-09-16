@@ -18,13 +18,14 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  * @author root
  */
-public class MoodleModAssignSubmissionParam {
+public class MoodleModAssignSubmissionParam implements Serializable{
 
 	private ArrayList<MoodleModAssignAssignment> assignmentids = null;
 	private Long before = 0L;

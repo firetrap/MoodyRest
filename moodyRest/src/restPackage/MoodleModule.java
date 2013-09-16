@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -30,7 +31,7 @@ import java.util.ArrayList;
  * @see MoodleRestCourse
  * @see MoodleModuleContent
  */
-public class MoodleModule {
+public class MoodleModule implements Serializable {
 
 	/**
 	 * <p>
@@ -402,12 +403,21 @@ public class MoodleModule {
 			setModPlural(content);
 		}
 		if (name.equals("availablefrom")) {
+			if (content.isEmpty()) {
+				content = "0";
+			}
 			setAvailableFrom(Long.parseLong(content.trim()));
 		}
 		if (name.equals("availableuntil")) {
+			if (content.isEmpty()) {
+				content = "0";
+			}
 			setAvailableUntil(Long.parseLong(content.trim()));
 		}
 		if (name.equals("indent")) {
+			if (content.isEmpty()) {
+				content = "0";
+			}
 			setIndent(Integer.parseInt(content));
 		}
 	}

@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.Serializable;
 import java.util.Enumeration;
 import java.util.Hashtable;
 
@@ -28,7 +29,7 @@ import java.util.Hashtable;
  * 
  * @author Bill Antonia
  */
-public class MoodleCourseContent {
+public class MoodleCourseContent implements Serializable{
 
 	private long id = -1;
 	private Hashtable<Long, MoodleModule> modules = null;

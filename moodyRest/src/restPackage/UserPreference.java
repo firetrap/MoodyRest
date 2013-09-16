@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class UserPreference {
+public class UserPreference implements Serializable{
 	private String type = null;
 	private String value = null;
 

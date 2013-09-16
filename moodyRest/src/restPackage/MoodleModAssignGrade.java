@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-class MoodleModAssignGrade {
+class MoodleModAssignGrade implements Serializable{
 
 	private String grade = null;
 	private Long grader = null;

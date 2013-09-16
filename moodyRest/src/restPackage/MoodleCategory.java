@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class MoodleCategory {
+public class MoodleCategory implements Serializable{
 
 	private Integer coursecount = null;
 	private Integer depth = null;

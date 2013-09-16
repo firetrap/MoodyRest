@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class MoodleModAssignWarning {
+public class MoodleModAssignWarning implements Serializable{
 
 	private String element = null;
 	private Long elementid = null;

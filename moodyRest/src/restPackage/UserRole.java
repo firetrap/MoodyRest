@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class UserRole {
+public class UserRole implements Serializable{
 
 	private String name = null;
 	private Long roleid = null;

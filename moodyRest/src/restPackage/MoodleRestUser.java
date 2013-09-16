@@ -19,6 +19,7 @@
 package restPackage;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Hashtable;
@@ -37,7 +38,7 @@ import org.w3c.dom.NodeList;
  * @author Bill Antonia
  * @see MoodleUser
  */
-public class MoodleRestUser {
+public class MoodleRestUser implements Serializable{
 
 	/**
 	 * <p>

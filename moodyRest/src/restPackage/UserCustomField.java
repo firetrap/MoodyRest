@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author Bill Antonia
  */
-public class UserCustomField {
+public class UserCustomField implements Serializable{
 
 	private String name = null;
 	private String shortname = null;

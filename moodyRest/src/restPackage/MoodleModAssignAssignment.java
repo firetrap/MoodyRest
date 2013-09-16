@@ -18,11 +18,13 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * 
  * @author root
  */
-public class MoodleModAssignAssignment {
+public class MoodleModAssignAssignment implements Serializable{
 	private Long id = null;
 
 	public MoodleModAssignAssignment() {

@@ -18,6 +18,8 @@
 
 package restPackage;
 
+import java.io.Serializable;
+
 /**
  * <p>
  * Class to relate a user to a role within a particular context.
@@ -30,7 +32,7 @@ package restPackage;
  * @see MoodleRestEnrol
  * @author Bill Antonia
  */
-public class MoodleEnrolUser {
+public class MoodleEnrolUser implements Serializable{
 
 	private Long contextid = null;
 	private Long roleid = null;
