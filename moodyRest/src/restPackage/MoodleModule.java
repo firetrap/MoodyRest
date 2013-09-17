@@ -403,18 +403,30 @@ public class MoodleModule implements Serializable {
 			setModPlural(content);
 		}
 		if (name.equals("availablefrom")) {
+			/**
+			 * Added by firetrap "availablefrom" can be empty so in previous
+			 * version it throws NumberFormatException when parsing long
+			 */
 			if (content.isEmpty()) {
 				content = "0";
 			}
 			setAvailableFrom(Long.parseLong(content.trim()));
 		}
 		if (name.equals("availableuntil")) {
+			/**
+			 * Added by firetrap "availableuntil" can be empty so in previous
+			 * version it throws NumberFormatException when parsing long
+			 */
 			if (content.isEmpty()) {
 				content = "0";
 			}
 			setAvailableUntil(Long.parseLong(content.trim()));
 		}
 		if (name.equals("indent")) {
+			/**
+			 * Added by firetrap "indent" can be empty so in previous version it
+			 * throws NumberFormatException when parsing long
+			 */
 			if (content.isEmpty()) {
 				content = "0";
 			}
