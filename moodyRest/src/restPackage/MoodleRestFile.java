@@ -42,15 +42,15 @@ public class MoodleRestFile implements Serializable{
 	 *            params
 	 * @return MoodleFileGetFiles
 	 * @throws MoodleRestFileException
-	 * @throws UnsupportedEncodingException
+	 * @throws UnsupportedENCODING.ToString()Exception
 	 * @throws MoodleRestException
 	 */
 	public static MoodleFileGetFiles getFiles(MoodleFileParent params)
 			throws MoodleRestFileException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILES_GET_FILES
-				: MoodleServices.CORE_FILES_GET_FILES;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILE_GET_FILES.name()
+				: MoodleServices.CORE_FILES_GET_FILES.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestFileException(MoodleRestException.AUTH_NULL);
 		} else {
@@ -58,17 +58,17 @@ public class MoodleRestFile implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.contextid != null) {
 			data.append("&")
 					.append(URLEncoder.encode("contextid",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.contextid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": contextid");
@@ -76,10 +76,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.component != null) {
 			data.append("&")
 					.append(URLEncoder.encode("component",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.component,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": component");
@@ -87,10 +87,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filearea != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filearea",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filearea,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filearea");
@@ -98,10 +98,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.itemid != null) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("itemid", MoodleServices.ENCODING))
+							.encode("itemid", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.itemid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": itemid");
@@ -109,10 +109,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filepath != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filepath",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filepath,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filepath");
@@ -120,10 +120,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filename != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filename",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filename,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filename");
@@ -166,15 +166,17 @@ public class MoodleRestFile implements Serializable{
 				}
 			}
 		}
+		
 		if (fileParent != null) {
 			result.addParent(fileParent);
 		}
 		if (fileFile != null) {
 			result.addFile(fileFile);
 		}
+	
 		return result;
 	}
-
+	
 	/**
 	 * <p>
 	 * Method to upload a file and attach to a context.
@@ -184,15 +186,15 @@ public class MoodleRestFile implements Serializable{
 	 *            params
 	 * @return MoodleFileFile
 	 * @throws MoodleRestFileException
-	 * @throws UnsupportedEncodingException
+	 * @throws UnsupportedENCODING.ToString()Exception
 	 * @throws MoodleRestException
 	 */
 	public static MoodleFileFile upload(MoodleFileContent params)
 			throws MoodleRestFileException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILES_UPLOAD
-				: MoodleServices.CORE_FILES_UPLOAD;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILE_UPLOAD.name()
+				: MoodleServices.CORE_FILES_UPLOAD.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestFileException(MoodleRestException.AUTH_NULL);
 		} else {
@@ -200,17 +202,17 @@ public class MoodleRestFile implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.contextid != null) {
 			data.append("&")
 					.append(URLEncoder.encode("contextid",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.contextid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": contextid");
@@ -218,10 +220,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.component != null) {
 			data.append("&")
 					.append(URLEncoder.encode("component",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.component,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": component");
@@ -229,10 +231,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filearea != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filearea",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filearea,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filearea");
@@ -240,10 +242,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.itemid != null) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("itemid", MoodleServices.ENCODING))
+							.encode("itemid", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.itemid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": itemid");
@@ -251,10 +253,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filepath != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filepath",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filepath,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filepath");
@@ -262,10 +264,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filename != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filename",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filename,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filename");
@@ -273,10 +275,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filecontent != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filecontent",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filecontent,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filecontent");
@@ -309,24 +311,24 @@ public class MoodleRestFile implements Serializable{
 			MoodleFileParent params) throws MoodleRestFileException,
 			UnsupportedEncodingException, MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILES_GET_FILES
-				: MoodleServices.CORE_FILES_GET_FILES;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILE_GET_FILES.name()
+				: MoodleServices.CORE_FILES_GET_FILES.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.contextid != null) {
 			data.append("&")
 					.append(URLEncoder.encode("contextid",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.contextid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": contextid");
@@ -334,10 +336,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.component != null) {
 			data.append("&")
 					.append(URLEncoder.encode("component",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.component,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": component");
@@ -345,10 +347,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filearea != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filearea",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filearea,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filearea");
@@ -356,10 +358,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.itemid != null) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("itemid", MoodleServices.ENCODING))
+							.encode("itemid", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.itemid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": itemid");
@@ -367,10 +369,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filepath != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filepath",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filepath,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filepath");
@@ -378,10 +380,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filename != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filename",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filename,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filename");
@@ -437,24 +439,24 @@ public class MoodleRestFile implements Serializable{
 			MoodleFileContent params) throws MoodleRestFileException,
 			UnsupportedEncodingException, MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILES_UPLOAD
-				: MoodleServices.CORE_FILES_UPLOAD;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_FILE_UPLOAD.name()
+				: MoodleServices.CORE_FILES_UPLOAD.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.contextid != null) {
 			data.append("&")
 					.append(URLEncoder.encode("contextid",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.contextid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": contextid");
@@ -462,10 +464,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.component != null) {
 			data.append("&")
 					.append(URLEncoder.encode("component",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.component,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": component");
@@ -473,10 +475,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filearea != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filearea",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filearea,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filearea");
@@ -484,10 +486,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.itemid != null) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("itemid", MoodleServices.ENCODING))
+							.encode("itemid", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.itemid,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": itemid");
@@ -495,10 +497,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filepath != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filepath",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filepath,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filepath");
@@ -506,10 +508,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filename != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filename",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filename,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filename");
@@ -517,10 +519,10 @@ public class MoodleRestFile implements Serializable{
 		if (params.filecontent != null) {
 			data.append("&")
 					.append(URLEncoder.encode("filecontent",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.filecontent,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		} else {
 			throw new MoodleRestFileException(
 					MoodleRestException.REQUIRED_PARAMETER + ": filecontent");

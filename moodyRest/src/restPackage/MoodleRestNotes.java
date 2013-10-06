@@ -69,8 +69,8 @@ public class MoodleRestNotes implements Serializable{
 	public static MoodleNote[] createNotes(MoodleNote[] notes)
 			throws MoodleRestNotesException, MoodleRestException {
 		int processedCount = 0;
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_NOTES_CREATE_NOTES
-				: MoodleServices.CORE_NOTES_CREATE_NOTES;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_NOTES_CREATE_NOTES.name()
+				: MoodleServices.CORE_NOTES_CREATE_NOTES.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -80,10 +80,10 @@ public class MoodleRestNotes implements Serializable{
 			}
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < notes.length; i++) {
 				if (notes[i] == null) {
 					throw new MoodleRestNotesException(
@@ -95,11 +95,11 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][userid]", MoodleServices.ENCODING))
+									+ "][userid]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + notes[i].getUserId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getPublishState() == null) {
 					throw new MoodleRestNotesException(
@@ -108,11 +108,11 @@ public class MoodleRestNotes implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
 									+ "][publishstate]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									notes[i].getPublishState(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getCourseId() == null) {
 					throw new MoodleRestNotesException(
@@ -120,11 +120,11 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][courseid]", MoodleServices.ENCODING))
+									+ "][courseid]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + notes[i].getCourseId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getText() == null) {
 					throw new MoodleRestNotesException(
@@ -132,10 +132,10 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i + "][text]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(notes[i].getText(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getFormat() == null) {
 					notes[i].setFormat("text");
@@ -144,10 +144,10 @@ public class MoodleRestNotes implements Serializable{
 						|| notes[i].getFormat().equals("html")) {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][format]", MoodleServices.ENCODING))
+									+ "][format]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(notes[i].getFormat(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				} else {
 					throw new MoodleRestNotesException(
 							MoodleRestNotesException.FORMAT_INCORRECT);
@@ -156,11 +156,11 @@ public class MoodleRestNotes implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
 									+ "][clientnoteid]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									notes[i].getClientNoteId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 			}
 			data.trimToSize();
@@ -197,19 +197,19 @@ public class MoodleRestNotes implements Serializable{
 			MoodleNote[] notes) throws MoodleRestNotesException,
 			MoodleRestException {
 		int processedCount = 0;
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_NOTES_CREATE_NOTES
-				: MoodleServices.CORE_NOTES_CREATE_NOTES;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_NOTES_CREATE_NOTES.name()
+				: MoodleServices.CORE_NOTES_CREATE_NOTES.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < notes.length; i++) {
 				if (notes[i] == null) {
 					throw new MoodleRestNotesException(
@@ -221,11 +221,11 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][userid]", MoodleServices.ENCODING))
+									+ "][userid]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + notes[i].getUserId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getPublishState() == null) {
 					throw new MoodleRestNotesException(
@@ -234,11 +234,11 @@ public class MoodleRestNotes implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
 									+ "][publishstate]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									notes[i].getPublishState(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getCourseId() == null) {
 					throw new MoodleRestNotesException(
@@ -246,11 +246,11 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][courseid]", MoodleServices.ENCODING))
+									+ "][courseid]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + notes[i].getCourseId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getText() == null) {
 					throw new MoodleRestNotesException(
@@ -258,10 +258,10 @@ public class MoodleRestNotes implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i + "][text]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(notes[i].getText(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (notes[i].getFormat() == null) {
 					notes[i].setFormat("text");
@@ -270,10 +270,10 @@ public class MoodleRestNotes implements Serializable{
 						|| notes[i].getFormat().equals("html")) {
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
-									+ "][format]", MoodleServices.ENCODING))
+									+ "][format]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(notes[i].getFormat(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				} else {
 					throw new MoodleRestNotesException(
 							MoodleRestNotesException.FORMAT_INCORRECT);
@@ -282,11 +282,11 @@ public class MoodleRestNotes implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode("notes[" + i
 									+ "][clientnoteid]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									notes[i].getClientNoteId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 			}
 			data.trimToSize();

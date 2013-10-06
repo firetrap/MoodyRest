@@ -78,8 +78,8 @@ public class MoodleRestUser implements Serializable{
 	public static MoodleUser[] createUsers(MoodleUser[] user)
 			throws MoodleRestUserException, MoodleRestException {
 		final Hashtable hash = new Hashtable();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_CREATE_USERS
-				: MoodleServices.CORE_USER_CREATE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_CREATE_USERS.name()
+				: MoodleServices.CORE_USER_CREATE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -87,14 +87,14 @@ public class MoodleRestUser implements Serializable{
 			} else {
 				data.append(MoodleCallRestWebService.getAuth());// data.append(URLEncoder.encode("wstoken",
 			}
-			// MoodleServices.ENCODING)).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
-			// MoodleServices.ENCODING));
+			// MoodleServices.ENCODING.toString())).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
+			// MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			for (int i = 0; i < user.length; i++) {
 				if (user[i] == null) {
 					throw new MoodleRestUserException(
@@ -106,10 +106,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][username]", MoodleServices.ENCODING))
+									+ "][username]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getUsername(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getPassword() == null) {
 					throw new MoodleRestUserException(
@@ -117,10 +117,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][password]", MoodleServices.ENCODING))
+									+ "][password]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getPassword(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getFirstname() == null) {
 					throw new MoodleRestUserException(
@@ -128,10 +128,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][firstname]", MoodleServices.ENCODING))
+									+ "][firstname]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getFirstname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getLastname() == null) {
 					throw new MoodleRestUserException(
@@ -139,10 +139,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][lastname]", MoodleServices.ENCODING))
+									+ "][lastname]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLastname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getEmail() == null) {
 					throw new MoodleRestUserException(
@@ -151,104 +151,104 @@ public class MoodleRestUser implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][email]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getEmail(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getAuth() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][auth]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getAuth(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getIdNumber() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][idnumber]", MoodleServices.ENCODING))
+									+ "][idnumber]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getIdNumber(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getLang() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][lang]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLang(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getTheme() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][theme]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTheme(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getTimezone() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][timezone]", MoodleServices.ENCODING))
+									+ "][timezone]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTimezone(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getMailFormat() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][mailformat]", MoodleServices.ENCODING))
+									+ "][mailformat]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + (user[i].getMailFormat() ? 1 : 0),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getDescription() != null) {
 					data.append("&")
 							.append(URLEncoder
 									.encode("users[" + i + "][description]",
-											MoodleServices.ENCODING))
+											MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getDescription(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getCity() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][city]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCity(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getCountry() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][country]", MoodleServices.ENCODING))
+									+ "][country]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCountry(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getPreference() != null) {
 					for (int j = 0; j < user[i].getPreference().size(); j++) {
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString().toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getType(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString().toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString().toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString().toString()));
 					}
 				}
 				if (user[i].getCustomFields() != null) {
@@ -256,19 +256,19 @@ public class MoodleRestUser implements Serializable{
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString().toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getName(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString().toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString().toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString().toString()));
 					}
 				}
 			}
@@ -322,8 +322,8 @@ public class MoodleRestUser implements Serializable{
 	public static void deleteUsers(Long[] userids)
 			throws MoodleRestUserException, UnsupportedEncodingException,
 			MoodleRestException {
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_DELETE_USERS
-				: MoodleServices.CORE_USER_DELETE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_DELETE_USERS.name()
+				: MoodleServices.CORE_USER_DELETE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -331,14 +331,14 @@ public class MoodleRestUser implements Serializable{
 			} else {
 				data.append(MoodleCallRestWebService.getAuth());// data.append(URLEncoder.encode("wstoken",
 			}
-			// MoodleServices.ENCODING)).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
-			// MoodleServices.ENCODING));
+			// MoodleServices.ENCODING.toString())).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
+			// MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			for (int i = 0; i < userids.length; i++) {
 				if (userids[i] < 1) {
 					throw new MoodleRestUserException(
@@ -346,7 +346,7 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("userids[" + i + "]",
-									MoodleServices.ENCODING)).append("=")
+									MoodleServices.ENCODING.toString().toString())).append("=")
 							.append(userids[i]);
 				}
 			}
@@ -377,7 +377,7 @@ public class MoodleRestUser implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestUserException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_USER_GET_COURSE_USER_PROFILE;
+		final String functionCall = MoodleServices.CORE_USER_GET_COURSE_USER_PROFILES.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -385,14 +385,14 @@ public class MoodleRestUser implements Serializable{
 			} else {
 				data.append(MoodleCallRestWebService.getAuth());// data.append(URLEncoder.encode("wstoken",
 			}
-			// MoodleServices.ENCODING)).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
-			// MoodleServices.ENCODING));
+			// MoodleServices.ENCODING.toString())).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
+			// MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			for (int i = 0; i < userList.length; i++) {
 				if (userList[i].getUserId() < 1) {
 					throw new MoodleRestUserException(
@@ -401,11 +401,11 @@ public class MoodleRestUser implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"userlist[" + i + "][userid]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString().toString())).append("=")
 						.append(userList[i].getUserId());
 				data.append("&")
 						.append(URLEncoder.encode("userlist[" + i
-								+ "][courseid]", MoodleServices.ENCODING))
+								+ "][courseid]", MoodleServices.ENCODING.toString().toString()))
 						.append("=").append(userList[i].getCourseId());
 			}
 			data.trimToSize();
@@ -583,7 +583,7 @@ public class MoodleRestUser implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestUserException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_USER_GET_USERS;
+		final String functionCall = MoodleServices.CORE_USER_GET_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -591,22 +591,22 @@ public class MoodleRestUser implements Serializable{
 			} else {
 				data.append(MoodleCallRestWebService.getAuth());// data.append(URLEncoder.encode("wstoken",
 			}
-			// MoodleServices.ENCODING)).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
-			// MoodleServices.ENCODING));
+			// MoodleServices.ENCODING.toString())).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
+			// MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			for (int i = 0; i < criteria.length; i++) {
 				data.append("&")
 						.append(URLEncoder.encode("criteria[" + i + "][key]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString().toString())).append("=")
 						.append(criteria[i].getKey());
 				data.append("&")
 						.append(URLEncoder.encode("criteria[" + i + "][value]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString().toString())).append("=")
 						.append(criteria[i].getValue());
 			}
 			data.trimToSize();
@@ -774,8 +774,8 @@ public class MoodleRestUser implements Serializable{
 		final Vector v = new Vector();
 		MoodleUser user = null;
 		// boolean processed=false;
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_GET_USERS_BY_ID
-				: MoodleServices.CORE_USER_GET_USERS_BY_ID;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_GET_USERS_BY_ID.name()
+				: MoodleServices.CORE_USER_GET_USERS_BY_ID.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -783,14 +783,14 @@ public class MoodleRestUser implements Serializable{
 			} else {
 				data.append(MoodleCallRestWebService.getAuth());// data.append(URLEncoder.encode("wstoken",
 			}
-			// MoodleServices.ENCODING)).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
-			// MoodleServices.ENCODING));
+			// MoodleServices.ENCODING.toString())).append("=").append(URLEncoder.encode(MoodleCallRestWebService.getToken(),
+			// MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			UserCustomField customField = null;
 			UserPreference preference = null;
 			UserEnrolledCourse enrolledCourse = null;
@@ -801,7 +801,7 @@ public class MoodleRestUser implements Serializable{
 				}
 				data.append("&")
 						.append(URLEncoder.encode("userids[" + i + "]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString().toString())).append("=")
 						.append(userids[i]);
 			}
 			data.trimToSize();
@@ -943,8 +943,8 @@ public class MoodleRestUser implements Serializable{
 	 */
 	public static void updateUsers(MoodleUser[] user)
 			throws MoodleRestUserException, MoodleRestException {
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_UPDATE_USERS
-				: MoodleServices.CORE_USER_UPDATE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_UPDATE_USERS.name()
+				: MoodleServices.CORE_USER_UPDATE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
 			if (MoodleCallRestWebService.getAuth() == null) {
@@ -954,10 +954,10 @@ public class MoodleRestUser implements Serializable{
 			}
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString().toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString().toString()));
 			for (int i = 0; i < user.length; i++) {
 				if (user[i] == null) {
 					throw new MoodleRestUserException(
@@ -969,145 +969,145 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][id]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode("" + user[i].getId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString().toString()));
 				}
 				if (user[i].getUsername() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][username]", MoodleServices.ENCODING))
+									+ "][username]", MoodleServices.ENCODING.toString().toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getUsername(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPassword() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][password]", MoodleServices.ENCODING))
+									+ "][password]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getPassword(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getFirstname() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][firstname]", MoodleServices.ENCODING))
+									+ "][firstname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getFirstname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLastname() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][lastname]", MoodleServices.ENCODING))
+									+ "][lastname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLastname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getEmail() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][email]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getEmail(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getAuth() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][auth]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getAuth(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getIdNumber() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][idnumber]", MoodleServices.ENCODING))
+									+ "][idnumber]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getIdNumber(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLang() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][lang]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLang(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTheme() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][theme]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTheme(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTimezone() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][timezone]", MoodleServices.ENCODING))
+									+ "][timezone]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTimezone(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getMailFormat() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][mailformat]", MoodleServices.ENCODING))
+									+ "][mailformat]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + (user[i].getMailFormat() ? 1 : 0),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getDescription() != null) {
 					data.append("&")
 							.append(URLEncoder
 									.encode("users[" + i + "][description]",
-											MoodleServices.ENCODING))
+											MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getDescription(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCity() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][city]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCity(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCountry() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][country]", MoodleServices.ENCODING))
+									+ "][country]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCountry(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPreference() != null) {
 					for (int j = 0; j < user[i].getPreference().size(); j++) {
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getType(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 				if (user[i].getCustomFields() != null) {
@@ -1115,19 +1115,19 @@ public class MoodleRestUser implements Serializable{
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getName(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 			}
@@ -1151,19 +1151,19 @@ public class MoodleRestUser implements Serializable{
 			MoodleUser[] user) throws MoodleRestUserException,
 			MoodleRestException {
 		final Hashtable hash = new Hashtable();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_CREATE_USERS
-				: MoodleServices.CORE_USER_CREATE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_CREATE_USERS.name()
+				: MoodleServices.CORE_USER_CREATE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < user.length; i++) {
 				if (user[i] == null) {
 					throw new MoodleRestUserException(
@@ -1175,10 +1175,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][username]", MoodleServices.ENCODING))
+									+ "][username]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getUsername(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPassword() == null) {
 					throw new MoodleRestUserException(
@@ -1186,10 +1186,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][password]", MoodleServices.ENCODING))
+									+ "][password]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getPassword(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getFirstname() == null) {
 					throw new MoodleRestUserException(
@@ -1197,10 +1197,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][firstname]", MoodleServices.ENCODING))
+									+ "][firstname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getFirstname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLastname() == null) {
 					throw new MoodleRestUserException(
@@ -1208,10 +1208,10 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][lastname]", MoodleServices.ENCODING))
+									+ "][lastname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLastname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getEmail() == null) {
 					throw new MoodleRestUserException(
@@ -1220,104 +1220,104 @@ public class MoodleRestUser implements Serializable{
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][email]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getEmail(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getAuth() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][auth]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getAuth(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getIdNumber() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][idnumber]", MoodleServices.ENCODING))
+									+ "][idnumber]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getIdNumber(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLang() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][lang]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLang(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTheme() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][theme]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTheme(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTimezone() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][timezone]", MoodleServices.ENCODING))
+									+ "][timezone]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTimezone(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getMailFormat() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][mailformat]", MoodleServices.ENCODING))
+									+ "][mailformat]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + (user[i].getMailFormat() ? 1 : 0),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getDescription() != null) {
 					data.append("&")
 							.append(URLEncoder
 									.encode("users[" + i + "][description]",
-											MoodleServices.ENCODING))
+											MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getDescription(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCity() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][city]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCity(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCountry() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][country]", MoodleServices.ENCODING))
+									+ "][country]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCountry(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPreference() != null) {
 					for (int j = 0; j < user[i].getPreference().size(); j++) {
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getType(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 				if (user[i].getCustomFields() != null) {
@@ -1325,19 +1325,19 @@ public class MoodleRestUser implements Serializable{
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getName(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 			}
@@ -1370,19 +1370,19 @@ public class MoodleRestUser implements Serializable{
 	public void __deleteUsers(String url, String token, Long[] userids)
 			throws MoodleRestUserException, UnsupportedEncodingException,
 			MoodleRestException {
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_DELETE_USERS
-				: MoodleServices.CORE_USER_DELETE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_DELETE_USERS.name()
+				: MoodleServices.CORE_USER_DELETE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < userids.length; i++) {
 				if (userids[i] < 1) {
 					throw new MoodleRestUserException(
@@ -1390,7 +1390,7 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("userids[" + i + "]",
-									MoodleServices.ENCODING)).append("=")
+									MoodleServices.ENCODING.toString())).append("=")
 							.append(userids[i]);
 				}
 			}
@@ -1410,18 +1410,18 @@ public class MoodleRestUser implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestUserException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_USER_GET_COURSE_USER_PROFILE;
+		final String functionCall = MoodleServices.CORE_USER_GET_COURSE_USER_PROFILES.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < userList.length; i++) {
 				if (userList[i].getUserId() < 1) {
 					throw new MoodleRestUserException(
@@ -1430,11 +1430,11 @@ public class MoodleRestUser implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"userlist[" + i + "][userid]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString())).append("=")
 						.append(userList[i].getUserId());
 				data.append("&")
 						.append(URLEncoder.encode("userlist[" + i
-								+ "][courseid]", MoodleServices.ENCODING))
+								+ "][courseid]", MoodleServices.ENCODING.toString()))
 						.append("=").append(userList[i].getCourseId());
 			}
 			data.trimToSize();
@@ -1600,26 +1600,26 @@ public class MoodleRestUser implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestUserException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_USER_GET_USERS;
+		final String functionCall = MoodleServices.CORE_USER_GET_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < criteria.length; i++) {
 				data.append("&")
 						.append(URLEncoder.encode("criteria[" + i + "][key]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString())).append("=")
 						.append(criteria[i].getKey());
 				data.append("&")
 						.append(URLEncoder.encode("criteria[" + i + "][value]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString())).append("=")
 						.append(criteria[i].getValue());
 			}
 			data.trimToSize();
@@ -1774,19 +1774,19 @@ public class MoodleRestUser implements Serializable{
 			MoodleRestException {
 		final Vector v = new Vector();
 		MoodleUser user = null;
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_GET_USERS_BY_ID
-				: MoodleServices.CORE_USER_GET_USERS_BY_ID;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_GET_USERS_BY_ID.name()
+				: MoodleServices.CORE_USER_GET_USERS_BY_ID.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			UserCustomField customField = null;
 			UserPreference preference = null;
 			UserEnrolledCourse enrolledCourse = null;
@@ -1797,7 +1797,7 @@ public class MoodleRestUser implements Serializable{
 				}
 				data.append("&")
 						.append(URLEncoder.encode("userids[" + i + "]",
-								MoodleServices.ENCODING)).append("=")
+								MoodleServices.ENCODING.toString())).append("=")
 						.append(userids[i]);
 			}
 			data.trimToSize();
@@ -1918,19 +1918,19 @@ public class MoodleRestUser implements Serializable{
 
 	public void __updateUsers(String url, String token, MoodleUser[] user)
 			throws MoodleRestUserException, MoodleRestException {
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_UPDATE_USERS
-				: MoodleServices.CORE_USER_UPDATE_USERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_USER_UPDATE_USERS.name()
+				: MoodleServices.CORE_USER_UPDATE_USERS.name();
 		try {
 			final StringBuilder data = new StringBuilder();
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < user.length; i++) {
 				if (user[i] == null) {
 					throw new MoodleRestUserException(
@@ -1942,145 +1942,145 @@ public class MoodleRestUser implements Serializable{
 				} else {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][id]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode("" + user[i].getId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getUsername() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][username]", MoodleServices.ENCODING))
+									+ "][username]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getUsername(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPassword() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][password]", MoodleServices.ENCODING))
+									+ "][password]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getPassword(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getFirstname() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][firstname]", MoodleServices.ENCODING))
+									+ "][firstname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getFirstname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLastname() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][lastname]", MoodleServices.ENCODING))
+									+ "][lastname]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLastname(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getEmail() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][email]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getEmail(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getAuth() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][auth]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getAuth(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getIdNumber() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][idnumber]", MoodleServices.ENCODING))
+									+ "][idnumber]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getIdNumber(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getLang() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][lang]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getLang(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTheme() != null) {
 					data.append("&")
 							.append(URLEncoder.encode(
 									"users[" + i + "][theme]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTheme(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getTimezone() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][timezone]", MoodleServices.ENCODING))
+									+ "][timezone]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getTimezone(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getMailFormat() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][mailformat]", MoodleServices.ENCODING))
+									+ "][mailformat]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									"" + (user[i].getMailFormat() ? 1 : 0),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getDescription() != null) {
 					data.append("&")
 							.append(URLEncoder
 									.encode("users[" + i + "][description]",
-											MoodleServices.ENCODING))
+											MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getDescription(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCity() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i + "][city]",
-									MoodleServices.ENCODING))
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCity(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getCountry() != null) {
 					data.append("&")
 							.append(URLEncoder.encode("users[" + i
-									+ "][country]", MoodleServices.ENCODING))
+									+ "][country]", MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(user[i].getCountry(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 				if (user[i].getPreference() != null) {
 					for (int j = 0; j < user[i].getPreference().size(); j++) {
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getType(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][preferences][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getPreference().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 				if (user[i].getCustomFields() != null) {
@@ -2088,19 +2088,19 @@ public class MoodleRestUser implements Serializable{
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][type]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getName(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 						data.append("&")
 								.append(URLEncoder.encode("users[" + i
 										+ "][customfields][" + j + "][value]",
-										MoodleServices.ENCODING))
+										MoodleServices.ENCODING.toString()))
 								.append("=")
 								.append(URLEncoder.encode(user[i]
 										.getCustomFields().get(j).getValue(),
-										MoodleServices.ENCODING));
+										MoodleServices.ENCODING.toString()));
 					}
 				}
 			}

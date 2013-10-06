@@ -22,273 +22,170 @@ import java.io.Serializable;
 
 /**
  * <p>
- * Class containing the Moodle web services function names as constants.
+ * 	Class containing the Moodle web services function names as constants.
  * </p>
  * 
- * @author Bill Antonia
+ * @author MoodyProject Team (Thanks to Bill Antonia)
  */
-public class MoodleServices implements Serializable{
+public enum MoodleServices implements Serializable {
 
-	/**
-   *
-   */
-	public static final String CORE_COURSE_CREATE_CATEGORIES = "core_course_create_categories";
-	/**
-   *
-   */
-	public static final String CORE_COURSE_CREATE_COURSES = "core_course_create_courses";
-	/**
-   *
-   */
-	public static final String CORE_COURSE_DELETE_CATEGORIES = "core_course_delete_categories";
-	/**
-   * 
-   */
-	public static final String CORE_COURSE_GET_CATEGORIES = "core_course_get_categories";
-	/**
-   *
-   */
-	public static final String CORE_COURSE_GET_CONTENTS = "core_course_get_contents";
-	// Course functions
-	/**
-   *
-   */
-	public static final String CORE_COURSE_GET_COURSES = "core_course_get_courses";
-	/**
-   * 
-   */
-	public static final String CORE_COURSE_UPDATE_CATEGORIES = "core_course_update_categories";
-	// Enrol functions
-	/**
-   *
-   */
-	public static final String CORE_ENROL_GET_ENROLLED_USERS = "core_enrol_get_enrolled_users";
-	/**
-   *
-   */
-	public static final String CORE_ENROL_GET_USERS_COURSES = "core_enrol_get_users_courses";
-	// Files functions
-	/**
-   *
-   */
-	public static final String CORE_FILES_GET_FILES = "core_files_get_files";
-	/**
-   *
-   */
-	public static final String CORE_FILES_UPLOAD = "core_files_upload";
-	/**
-   *
-   */
-	public static final String CORE_GROUP_ADD_GROUP_MEMBERS = "core_group_add_group_members";
-	// Group functions
-	/**
-   *
-   */
-	public static final String CORE_GROUP_CREATE_GROUPS = "core_group_create_groups";
-	/**
-   *
-   */
-	public static final String CORE_GROUP_DELETE_GROUP_MEMBERS = "core_group_delete_group_members";
+	// ####################
+	// # ACTUAL FUNCTIONS #
+	// ####################
+	// GROUP API
+	CORE_GROUP_CREATE_GROUPS,	
+	CORE_GROUP_GET_GROUPS,
+	CORE_GROUP_GET_COURSE_GROUPS,
+	CORE_GROUP_DELETE_GROUPS,	
+	CORE_GROUP_GET_GROUP_MEMBERS,	
+	CORE_GROUP_ADD_GROUP_MEMBERS,	
+	CORE_GROUP_DELETE_GROUP_MEMBERS,	
+	CORE_GROUP_CREATE_GROUPINGS,	
+	CORE_GROUP_UPDATE_GROUPINGS,	
+	CORE_GROUP_GET_GROUPINGS,	
+	CORE_GROUP_GET_COURSE_GROUPINGS,	
+	CORE_GROUP_DELETE_GROUPINGS,	
+	CORE_GROUP_ASSIGN_GROUPING,	
+	CORE_GROUP_UNASSIGN_GROUPING,	
 
-	/**
-   *
-   */
-	public static final String CORE_GROUP_DELETE_GROUPS = "core_group_delete_groups";
-	/**
-   *
-   */
-	public static final String CORE_GROUP_GET_COURSE_GROUPS = "core_group_get_course_groups";
-	/**
-   *
-   */
-	public static final String CORE_GROUP_GET_GROUP_MEMBERS = "core_group_get_group_members";
-	/**
-   *
-   */
-	public static final String CORE_GROUP_GET_GROUPS = "core_group_get_groups";
+	// FILES API
+	CORE_FILES_GET_FILES,
+	CORE_FILES_UPLOAD,	
 
-	// Message functions
-	/**
-   *
-   */
-	public static final String CORE_MESSAGE_SEND_INSTANT_MESSAGES = "core_message_send_instant_messages";
-	// Notes functions
-	/**
-   *
-   */
-	public static final String CORE_NOTES_CREATE_NOTES = "core_notes_create_notes";
-	// Role functions
-	/**
-   *
-   */
-	public static final String CORE_ROLE_ASSIGN_ROLES = "core_role_assign_roles";
-	/**
-   *
-   */
-	public static final String CORE_ROLE_UNASSIGN_ROLES = "core_role_unassign_roles";
-	/**
-	 * TO DO
-	 */
-	public static final String CORE_USER__GET_USERS_WITH_CAPABILITY = "core_users_get_users_with_capability";
-	// User functions
-	/**
-   *
-   */
-	public static final String CORE_USER_CREATE_USERS = "core_user_create_users";
-	/**
-   *
-   */
-	public static final String CORE_USER_DELETE_USERS = "core_user_delete_users";
+	// USER API
+	CORE_USER_CREATE_USERS,	
+	CORE_USER_GET_USERS_BY_ID,
+	CORE_USER_GET_COURSE_USER_PROFILES,
+	CORE_USER_DELETE_USERS,
+	CORE_USER_UPDATE_USERS,	
+	CORE_USER_GET_USERS,	
+	CORE_USER_GET_USERS_BY_FIELD,
 
-	/**
-   *
-   */
-	public static final String CORE_USER_GET_COURSE_USER_PROFILE = "core_user_get_course_user_profile";
-	/**
-   * 
-   */
-	public static final String CORE_USER_GET_USERS = "core_user_get_users";
-	/**
-   *
-   */
-	public static final String CORE_USER_GET_USERS_BY_ID = "core_user_get_users_by_id";
-	/**
-   *
-   */
-	public static final String CORE_USER_UPDATE_USERS = "core_user_update_users";
-	// Webservice functions
-	/**
-   *
-   */
-	public static final String CORE_WEBSERVICE_GET_SITE_INFO = "core_webservice_get_site_info";
-	/**
-   *
-   */
-	public static final String ENCODING = "UTF-8";
+	// ENROL
+	CORE_ENROL_GET_ENROLLED_USERS_WITH_CAPABILITY,	
+	CORE_ENROL_GET_ENROLLED_USERS,	
+	CORE_ENROL_GET_USERS_COURSES,
+	ENROL_MANUAL_ENROL_USERS,	
 
-	/**
-	 * TO DO
-	 */
-	public static final String MOD_ASSIGN_GET_ASSIGNMENTS = "mod_assign_get_assignments";
-	/**
-	 * TO DO
-	 */
-	public static final String MOD_ASSIGN_GET_GRADES = "mod_assign_get_grades";
-	/**
-	 * TO DO
-	 */
-	public static final String MOD_ASSIGN_GET_SUBMISSIONS = "mod_assign_get_submissions";
-	/**
-   *
-   */
-	public static final String MOODLE_COURSE_CREATE_COURSES = "moodle_course_create_courses";
+	// ROLE
+	CORE_ROLE_ASSIGN_ROLES,	
+	CORE_ROLE_UNASSIGN_ROLES,
 
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_COURSE_GET_COURSES = "moodle_course_get_courses";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_ENROL_GET_ENROLLED_USERS = "moodle_enrol_get_enrolled_users";
-	/**
-   *
-   */
-	public static final String MOODLE_ENROL_GET_USERS_COURSES = "moodle_enrol_get_users_courses";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_FILES_GET_FILES = "moodle_files_get_files";
+	// COURSE
+	CORE_COURSE_GET_CONTENTS,	
+	CORE_COURSE_GET_COURSES,	
+	CORE_COURSE_CREATE_COURSES,
+	CORE_COURSE_DELETE_COURSES,	
+	CORE_COURSE_DUPLICATE_COURSE,	
+	CORE_COURSE_GET_CATEGORIES,	
+	CORE_COURSE_CREATE_CATEGORIES,	
+	CORE_COURSE_UPDATE_CATEGORIES,	
+	CORE_COURSE_DELETE_CATEGORIES,	
+	CORE_COURSE_IMPORT_COURSE,
+	CORE_COURSE_DELETE_MODULES,	
+	CORE_COURSE_UPDATE_COURSES,	
 
-	/**
-   *
-   */
-	public static final String MOODLE_FILES_UPLOAD = "moodle_files_upload";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_ADD_GROUP_MEMBERS = "moodle_group_add_group_members";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_CREATE_GROUPS = "moodle_group_create_groups";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_DELETE_GROUP_MEMBERS = "moodle_group_delete_group_members";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_DELETE_GROUPS = "moodle_group_delete_groups";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_GET_COURSE_GROUPS = "moodle_group_get_course_groups";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_GET_GROUP_MEMBERS = "moodle_group_get_group_members";
-	/**
-   *
-   */
-	public static final String MOODLE_GROUP_GET_GROUPS = "moodle_group_get_groups";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_MESSAGE_SEND_INSTANTMESSAGES = "moodle_message_send_instantmessages";
+	// MESSAGE
+	CORE_MESSAGE_SEND_INSTANT_MESSAGES,	
+	CORE_MESSAGE_CREATE_CONTACTS,	
+	CORE_MESSAGE_DELETE_CONTACTS,	
+	CORE_MESSAGE_BLOCK_CONTACTS,
+	CORE_MESSAGE_UNBLOCK_CONTACTS,	
+	CORE_MESSAGE_GET_CONTACTS,	
+	CORE_MESSAGE_SEARCH_CONTACTS,
 
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_NOTES_CREATE_NOTES = "moodle_notes_create_notes";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_ROLE_ASSIGN = "moodle_role_assign";
+	// NOTES
+	CORE_NOTES_CREATE_NOTES,	
+	CORE_NOTES_DELETE_NOTES,	
+	CORE_NOTES_GET_NOTES,	
+	CORE_NOTES_UPDATE_NOTES,	
 
-	/**
-   *
-   */
-	public static final String MOODLE_ROLE_UNASSIGN = "moodle_role_unassign";
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_USER_CREATE_USERS = "moodle_user_create_users";
+	// WEBSERVICE
+	CORE_WEBSERVICE_GET_SITE_INFO,
 
-	/**
-   *
-   */
-	public static final String MOODLE_USER_DELETE_USERS = "moodle_user_delete_users";
-	/**
-   *
-   */
-	public static final String MOODLE_USER_GET_COURSE_PARTICIPANTS_BY_ID = "moodle_user_get_course_participants_by_id";
+	// GET
+	CORE_GET_STRING,	
+	CORE_GET_STRINGS,	
+	CORE_GET_COMPONENT_STRINGS,	
 
-	/**
-   *
-   */
-	public static final String MOODLE_USER_GET_USERS_BY_COURSEID = "moodle_user_get_users_by_courseid";
-	/**
-   *
-   */
-	public static final String MOODLE_USER_GET_USERS_BY_ID = "moodle_user_get_users_by_id";
-	/**
-   *
-   */
-	public static final String MOODLE_USER_UPDATE_USERS = "moodle_user_update_users";
+	// ASSIGN
+	MOD_ASSIGN_GET_GRADES,	
+	MOD_ASSIGN_GET_ASSIGNMENTS,	
+	MOD_ASSIGN_GET_SUBMISSIONS,	
 
-	// Legacy calls
-	/**
-   *
-   */
-	public static final String MOODLE_WEBSERVICE_GET_SITE_INFO = "moodle_webservice_get_siteinfo";
+	// COHORT
+	CORE_COHORT_CREATE_COHORTS,	
+	CORE_COHORT_DELETE_COHORTS,	
+	CORE_COHORT_GET_COHORTS,
+	CORE_COHORT_UPDATE_COHORTS,	
+	CORE_COHORT_ADD_COHORT_MEMBERS,	
+	CORE_COHORT_DELETE_COHORT_MEMBERS,
+	CORE_COHORT_GET_COHORT_MEMBERS,	
 
+	// GRADE
+	CORE_GRADE_GET_DEFINITIONS,	
+
+	// CALENDAR
+	CORE_CALENDAR_DELETE_CALENDAR_EVENTS,	
+	CORE_CALENDAR_GET_CALENDAR_EVENTS,	
+	CORE_CALENDAR_CREATE_CALENDAR_EVENTS,
+
+	// FORUM
+	MOD_FORUM_GET_FORUMS_BY_COURSES,
+	MOD_FORUM_GET_FORUM_DISCUSSIONS,
+
+	
+	// ####################
+	// # LEGACY FUNCTIONS #
+	// ####################
+	// GROUP API
+	MOODLE_GROUP_CREATE_GROUPS,	
+	MOODLE_GROUP_GET_GROUPS,	
+	MOODLE_GROUP_GET_COURSE_GROUPS,	
+	MOODLE_GROUP_DELETE_GROUPS,	
+	MOODLE_GROUP_GET_GROUPMEMBERS,	
+	MOODLE_GROUP_ADD_GROUPMEMBERS,	
+	MOODLE_GROUP_DELETE_GROUPMEMBERS,	
+
+	// FILE API
+	MOODLE_FILE_GET_FILES,	
+	MOODLE_FILE_UPLOAD,	
+
+	// USER API
+	MOODLE_USER_CREATE_USERS,	
+	MOODLE_USER_GET_USERS_BY_ID,	
+	MOODLE_USER_GET_USERS_BY_COURSEID,	
+	MOODLE_USER_GET_COURSE_PARTICIPANTS_BY_ID,	
+	MOODLE_USER_DELETE_USERS,	
+	MOODLE_USER_UPDATE_USERS,	
+
+	// ENROL
+	MOODLE_ENROL_GET_ENROLLED_USERS,	
+	MOODLE_ENROL_GET_USERS_COURSES,	
+	MOODLE_ENROL_MANUAL_ENROL_USERS,	
+
+	// ROLE
+	MOODLE_ROLE_ASSIGN,	
+	MOODLE_ROLE_UNASSIGN,	
+
+	// COURSE
+	MOODLE_COURSE_GET_COURSES,	
+	MOODLE_COURSE_CREATE_COURSES,	
+
+	// MESSAGE
+	MOODLE_MESSAGE_SEND_INSTANTMESSAGES,	
+
+	// NOTES
+	MOODLE_NOTES_CREATE_NOTES,	
+
+	// WEBSERVICE
+	MOODLE_WEBSERVICE_GET_SITEINFO,
+
+	ENCODING {
+		public String toString() {
+			return "UTF-8";
+	    
+		}
+	}
 }
+

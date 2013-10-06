@@ -37,7 +37,7 @@ public class MoodleRestModAssign implements Serializable{
 			throw new MoodleRestException(MoodleRestException.NO_LEGACY);
 		}
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleServices.MOD_ASSIGN_GET_SUBMISSIONS;
+		final String functionCall = MoodleServices.MOD_ASSIGN_GET_SUBMISSIONS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestModAssignException();
 		} else {
@@ -45,10 +45,10 @@ public class MoodleRestModAssign implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.getAssignmentIds() == null
 				|| params.getAssignmentIds().length == 0) {
 			throw new MoodleRestModAssignException(
@@ -59,33 +59,33 @@ public class MoodleRestModAssign implements Serializable{
 		for (int i = 0; i < assignmentIds.length; i++) {
 			data.append("&")
 					.append(URLEncoder.encode("assignmentids[" + i + "]",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + assignmentIds[i],
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!params.getStatus().isEmpty()) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("status", MoodleServices.ENCODING))
+							.encode("status", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.getStatus(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!(params.getSince() == 0)) {
 			data.append("&")
-					.append(URLEncoder.encode("since", MoodleServices.ENCODING))
+					.append(URLEncoder.encode("since", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.getSince(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!(params.getBefore() == 0)) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("before", MoodleServices.ENCODING))
+							.encode("before", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.getBefore(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		data.trimToSize();
 		final NodeList elements = MoodleCallRestWebService
@@ -207,16 +207,16 @@ public class MoodleRestModAssign implements Serializable{
 			throw new MoodleRestException(MoodleRestException.NO_LEGACY);
 		}
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleServices.MOD_ASSIGN_GET_SUBMISSIONS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleServices.MOD_ASSIGN_GET_SUBMISSIONS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (params.getAssignmentIds() == null
 				|| params.getAssignmentIds().length == 0) {
 			throw new MoodleRestModAssignException(
@@ -227,33 +227,33 @@ public class MoodleRestModAssign implements Serializable{
 		for (int i = 0; i < assignmentIds.length; i++) {
 			data.append("&")
 					.append(URLEncoder.encode("assignmentids[" + i + "]",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + assignmentIds[i],
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!params.getStatus().isEmpty()) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("status", MoodleServices.ENCODING))
+							.encode("status", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(params.getStatus(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!(params.getSince() == 0)) {
 			data.append("&")
-					.append(URLEncoder.encode("since", MoodleServices.ENCODING))
+					.append(URLEncoder.encode("since", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.getSince(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		if (!(params.getBefore() == 0)) {
 			data.append("&")
 					.append(URLEncoder
-							.encode("before", MoodleServices.ENCODING))
+							.encode("before", MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode("" + params.getBefore(),
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 		}
 		data.trimToSize();
 		final NodeList elements = new MoodleCallRestWebService().__call(url,

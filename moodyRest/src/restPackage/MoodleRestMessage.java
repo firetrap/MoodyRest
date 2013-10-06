@@ -21,9 +21,11 @@ package restPackage;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Vector;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 /**
@@ -31,9 +33,10 @@ import org.w3c.dom.NodeList;
  * Class to call Moodle REST message web services.
  * </p>
  * 
- * @author Bill Antonia
+ * @author MoodyProject Team (Thanks to Bill Antonia)
+ * 
  */
-public class MoodleRestMessage implements Serializable{
+public class MoodleRestMessage implements Serializable {
 
 	/**
 	 * <p>
@@ -71,7 +74,8 @@ public class MoodleRestMessage implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestMessageException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_MESSAGE_SEND_INSTANT_MESSAGES;
+		final String functionCall = MoodleServices.CORE_MESSAGE_SEND_INSTANT_MESSAGES
+				.name();
 		try {
 			if (MoodleCallRestWebService.getAuth() == null) {
 				throw new MoodleRestMessageException();
@@ -80,10 +84,10 @@ public class MoodleRestMessage implements Serializable{
 			}
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < messages.length; i++) {
 				if (messages[i].getToUserId() == null) {
 					throw new MoodleRestMessageException(
@@ -95,26 +99,27 @@ public class MoodleRestMessage implements Serializable{
 				}
 				data.append("&")
 						.append(URLEncoder.encode("messages[" + i
-								+ "][touserid]", MoodleServices.ENCODING))
+								+ "][touserid]",
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								Long.toString(messages[i].getToUserId()),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 				data.append("&")
 						.append(URLEncoder.encode("messages[" + i + "][text]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(messages[i].getText(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 				if (messages[i].getClientMsgId() != null) {
 					data.append("&")
-							.append(URLEncoder
-									.encode("messages[" + i + "][clientmsgid]",
-											MoodleServices.ENCODING))
+							.append(URLEncoder.encode("messages[" + i
+									+ "][clientmsgid]",
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									messages[i].getClientMsgId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 			}
 			data.trimToSize();
@@ -166,17 +171,21 @@ public class MoodleRestMessage implements Serializable{
 		if (MoodleCallRestWebService.isLegacy()) {
 			throw new MoodleRestMessageException(MoodleRestException.NO_LEGACY);
 		}
-		final String functionCall = MoodleServices.CORE_MESSAGE_SEND_INSTANT_MESSAGES;
+		final String functionCall = MoodleServices.CORE_MESSAGE_SEND_INSTANT_MESSAGES
+				.name();
 		try {
-			data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+			data.append(
+					URLEncoder.encode("wstoken",
+							MoodleServices.ENCODING.toString()))
 					.append("=")
-					.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+					.append(URLEncoder.encode(token,
+							MoodleServices.ENCODING.toString()));
 			data.append("&")
 					.append(URLEncoder.encode("wsfunction",
-							MoodleServices.ENCODING))
+							MoodleServices.ENCODING.toString()))
 					.append("=")
 					.append(URLEncoder.encode(functionCall,
-							MoodleServices.ENCODING));
+							MoodleServices.ENCODING.toString()));
 			for (int i = 0; i < messages.length; i++) {
 				if (messages[i].getToUserId() == null) {
 					throw new MoodleRestMessageException(
@@ -188,26 +197,27 @@ public class MoodleRestMessage implements Serializable{
 				}
 				data.append("&")
 						.append(URLEncoder.encode("messages[" + i
-								+ "][touserid]", MoodleServices.ENCODING))
+								+ "][touserid]",
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								Long.toString(messages[i].getToUserId()),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 				data.append("&")
 						.append(URLEncoder.encode("messages[" + i + "][text]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(messages[i].getText(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 				if (messages[i].getClientMsgId() != null) {
 					data.append("&")
-							.append(URLEncoder
-									.encode("messages[" + i + "][clientmsgid]",
-											MoodleServices.ENCODING))
+							.append(URLEncoder.encode("messages[" + i
+									+ "][clientmsgid]",
+									MoodleServices.ENCODING.toString()))
 							.append("=")
 							.append(URLEncoder.encode(
 									messages[i].getClientMsgId(),
-									MoodleServices.ENCODING));
+									MoodleServices.ENCODING.toString()));
 				}
 			}
 			data.trimToSize();
@@ -241,5 +251,116 @@ public class MoodleRestMessage implements Serializable{
 					Level.SEVERE, null, ex);
 		}
 		return messages;
+	}
+
+	// core_message_get_contacts
+	/**
+	 * <p>
+	 * Method to fetch information about the messaging contacts of the user
+	 * </p>
+	 * 
+	 * @return MoodleContact
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 */
+	public static MoodleContact[] getContacts()
+			throws MoodleRestMessageException, MoodleRestException {
+		String functionCall = MoodleServices.CORE_MESSAGE_GET_CONTACTS.name();
+		StringBuilder data = new StringBuilder();
+		MoodleContact[] contacts = null;
+
+		try {
+			if (MoodleCallRestWebService.getAuth() == null)
+				throw new MoodleRestMessageException();
+			else
+				data.append(MoodleCallRestWebService.getAuth());
+
+			data.append("&");
+			data.append(URLEncoder.encode("wsfunction",
+					MoodleServices.ENCODING.toString()));
+			data.append("=");
+			data.append(URLEncoder.encode(functionCall,
+					MoodleServices.ENCODING.toString()));
+
+			// get the contacts
+			NodeList elements = MoodleCallRestWebService.call(data.toString());
+
+			// parse the content. Each element is a "VALUE".
+			Vector<MoodleContact> vector = new Vector<MoodleContact>();
+			MoodleContact contact = null;
+
+			for (int j = 0; j < elements.getLength(); j++) {
+				
+				//
+				// instanciate the user if its null
+				if (contact == null)
+					contact = new MoodleContact(Long.valueOf("0"));
+				//
+				
+				//
+				// get current "VALUE" node
+				Node node = elements.item(j);
+				//
+
+				//
+				// get current node text value
+				String nodeValue = node.getTextContent();
+				//
+
+				//
+				// get current node "name" atribute
+				String nodeName = node.getParentNode().getAttributes()
+						.getNamedItem("name").getNodeValue();
+				//
+
+				contact.setMoodleUserContactField(nodeName, nodeValue);
+
+				if (nodeName.equalsIgnoreCase("unread")) {
+					//
+					// filtering "KEY"s with sons other than "VALUE"
+					String parentNodeName = null;
+					Node parentNode = node.getParentNode().getParentNode()
+							.getParentNode().getParentNode();
+
+					if ((parentNode != null)
+							&& (parentNode.getNodeName().equalsIgnoreCase("KEY")))
+						parentNodeName = parentNode.getAttributes()
+								.getNamedItem("name").getNodeValue();
+					//
+
+					//
+					// getting the state of the relation of the contact
+					MoodleContactState nodeState = null;
+					for (MoodleContactState state : MoodleContactState.values()) {
+						if ((parentNodeName != null)
+								&& (parentNodeName.equalsIgnoreCase(state.name()))) {
+							nodeState = state;
+							break;
+						}
+					}
+					//
+
+					contact.setMoodleUserContactField("state", nodeState);
+					vector.add(contact);
+					contact = null;
+				}
+			}
+			
+			// instaciate the array of contacts with the size of the vector
+			contacts = new MoodleContact[vector.size()];
+			
+			// Get the parsed contacts to an array
+			for(int i = 0 ; i<vector.size(); i++)
+				contacts[i] = vector.get(i);
+			
+			// Clear vector
+			vector.removeAllElements();
+
+		} catch (UnsupportedEncodingException ex) {
+			Logger.getLogger(MoodleRestMessage.class.getName()).log(
+					Level.SEVERE, null, ex);
+		}
+
+		return contacts;
 	}
 }

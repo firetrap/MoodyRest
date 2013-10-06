@@ -36,7 +36,7 @@ import org.w3c.dom.NodeList;
  * @see MoodleGroup
  * @see MoodleGroupUser
  */
-public class MoodleRestGroup implements Serializable{
+public class MoodleRestGroup implements Serializable {
 
 	// private static final int BUFFER_MAX=4000;
 
@@ -55,8 +55,8 @@ public class MoodleRestGroup implements Serializable{
 			throws MoodleRestGroupException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_ADD_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_ADD_GROUP_MEMBERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_ADD_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_ADD_GROUP_MEMBERS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -64,10 +64,10 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < users.length; i++) {
 			if (users[i] == null) {
 				throw new MoodleRestGroupException();
@@ -78,20 +78,20 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"members[" + i + "][groupid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getGroupId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (users[i].getUserId() < 1) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("members[" + i + "][userid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getUserId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -158,8 +158,8 @@ public class MoodleRestGroup implements Serializable{
 			MoodleRestException {
 		final Hashtable hash = new Hashtable();
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_CREATE_GROUPS
-				: MoodleServices.CORE_GROUP_CREATE_GROUPS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_CREATE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_CREATE_GROUPS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -167,10 +167,10 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < group.length; i++) {
 			if (group[i] == null) {
 				throw new MoodleRestGroupException();
@@ -181,42 +181,42 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"groups[" + i + "][courseid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + group[i].getCourseId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getName() == null || group[i].getName().equals("")) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i + "][name]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + group[i].getName(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getDescription() == null) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i
-								+ "][description]", MoodleServices.ENCODING))
+								+ "][description]", MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								"" + group[i].getDescription(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getEnrolmentKey() == null) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i
-								+ "][enrolmentkey]", MoodleServices.ENCODING))
+								+ "][enrolmentkey]", MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								"" + group[i].getEnrolmentKey(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -271,8 +271,8 @@ public class MoodleRestGroup implements Serializable{
 			throws MoodleRestGroupException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPS
-				: MoodleServices.CORE_GROUP_DELETE_GROUPS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_DELETE_GROUPS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -280,17 +280,17 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
@@ -331,8 +331,8 @@ public class MoodleRestGroup implements Serializable{
 			throws MoodleRestGroupException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_DELETE_GROUP_MEMBERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_DELETE_GROUP_MEMBERS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -340,10 +340,10 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < users.length; i++) {
 			if (users[i] == null) {
 				throw new MoodleRestGroupException();
@@ -354,20 +354,20 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"members[" + i + "][groupid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getGroupId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (users[i].getUserId() < 1) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("members[" + i + "][userid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getUserId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -413,8 +413,8 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroup group = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPS
-				: MoodleServices.CORE_GROUP_GET_GROUPS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPS.name()
+				: MoodleServices.CORE_GROUP_GET_GROUPS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -422,17 +422,17 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
@@ -483,8 +483,8 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroup group = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_COURSE_GROUPS
-				: MoodleServices.CORE_GROUP_GET_COURSE_GROUPS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_COURSE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_GET_COURSE_GROUPS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -492,16 +492,16 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (id < 1) {
 			throw new MoodleRestGroupException();
 		} else {
 			data.append("&")
 					.append(URLEncoder.encode("courseid",
-							MoodleServices.ENCODING)).append("=").append(id);
+							MoodleServices.ENCODING.toString())).append("=").append(id);
 		}
 		final NodeList elements = MoodleCallRestWebService
 				.call(data.toString());
@@ -569,8 +569,8 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroupUser user = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_GET_GROUP_MEMBERS;
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_GET_GROUP_MEMBERS.name();
 		if (MoodleCallRestWebService.getAuth() == null) {
 			throw new MoodleRestGroupException();
 		} else {
@@ -578,17 +578,17 @@ public class MoodleRestGroup implements Serializable{
 		}
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
@@ -617,17 +617,17 @@ public class MoodleRestGroup implements Serializable{
 			MoodleGroupUser[] users) throws MoodleRestGroupException,
 			UnsupportedEncodingException, MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_ADD_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_ADD_GROUP_MEMBERS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_ADD_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_ADD_GROUP_MEMBERS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < users.length; i++) {
 			if (users[i] == null) {
 				throw new MoodleRestGroupException();
@@ -638,20 +638,20 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"members[" + i + "][groupid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getGroupId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (users[i].getUserId() < 1) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("members[" + i + "][userid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getUserId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -680,17 +680,17 @@ public class MoodleRestGroup implements Serializable{
 			UnsupportedEncodingException, MoodleRestException {
 		final Hashtable hash = new Hashtable();
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_CREATE_GROUPS
-				: MoodleServices.CORE_GROUP_CREATE_GROUPS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_CREATE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_CREATE_GROUPS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < group.length; i++) {
 			if (group[i] == null) {
 				throw new MoodleRestGroupException();
@@ -701,42 +701,42 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"groups[" + i + "][courseid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + group[i].getCourseId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getName() == null || group[i].getName().equals("")) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i + "][name]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + group[i].getName(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getDescription() == null) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i
-								+ "][description]", MoodleServices.ENCODING))
+								+ "][description]", MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								"" + group[i].getDescription(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (group[i].getEnrolmentKey() == null) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("groups[" + i
-								+ "][enrolmentkey]", MoodleServices.ENCODING))
+								+ "][enrolmentkey]", MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode(
 								"" + group[i].getEnrolmentKey(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -769,24 +769,24 @@ public class MoodleRestGroup implements Serializable{
 			throws MoodleRestGroupException, UnsupportedEncodingException,
 			MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPS
-				: MoodleServices.CORE_GROUP_DELETE_GROUPS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_DELETE_GROUPS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
@@ -805,17 +805,17 @@ public class MoodleRestGroup implements Serializable{
 			MoodleGroupUser[] users) throws MoodleRestGroupException,
 			UnsupportedEncodingException, MoodleRestException {
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_DELETE_GROUP_MEMBERS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_DELETE_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_DELETE_GROUP_MEMBERS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < users.length; i++) {
 			if (users[i] == null) {
 				throw new MoodleRestGroupException();
@@ -826,20 +826,20 @@ public class MoodleRestGroup implements Serializable{
 				data.append("&")
 						.append(URLEncoder.encode(
 								"members[" + i + "][groupid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getGroupId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 			if (users[i].getUserId() < 1) {
 				throw new MoodleRestGroupException();
 			} else {
 				data.append("&")
 						.append(URLEncoder.encode("members[" + i + "][userid]",
-								MoodleServices.ENCODING))
+								MoodleServices.ENCODING.toString()))
 						.append("=")
 						.append(URLEncoder.encode("" + users[i].getUserId(),
-								MoodleServices.ENCODING));
+								MoodleServices.ENCODING.toString()));
 			}
 		}
 		data.trimToSize();
@@ -861,24 +861,24 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroup group = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPS
-				: MoodleServices.CORE_GROUP_GET_GROUPS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPS.name()
+				: MoodleServices.CORE_GROUP_GET_GROUPS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
@@ -916,23 +916,23 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroup group = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_COURSE_GROUPS
-				: MoodleServices.CORE_GROUP_GET_COURSE_GROUPS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_COURSE_GROUPS.name()
+				: MoodleServices.CORE_GROUP_GET_COURSE_GROUPS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		if (id < 1) {
 			throw new MoodleRestGroupException();
 		} else {
 			data.append("&")
 					.append(URLEncoder.encode("courseid",
-							MoodleServices.ENCODING)).append("=").append(id);
+							MoodleServices.ENCODING.toString())).append("=").append(id);
 		}
 		final NodeList elements = new MoodleCallRestWebService().__call(url,
 				data.toString());
@@ -975,24 +975,24 @@ public class MoodleRestGroup implements Serializable{
 		final Vector v = new Vector();
 		MoodleGroupUser user = null;
 		final StringBuilder data = new StringBuilder();
-		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUP_MEMBERS
-				: MoodleServices.CORE_GROUP_GET_GROUP_MEMBERS;
-		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING))
+		final String functionCall = MoodleCallRestWebService.isLegacy() ? MoodleServices.MOODLE_GROUP_GET_GROUPMEMBERS.name()
+				: MoodleServices.CORE_GROUP_GET_GROUP_MEMBERS.name();
+		data.append(URLEncoder.encode("wstoken", MoodleServices.ENCODING.toString()))
 				.append("=")
-				.append(URLEncoder.encode(token, MoodleServices.ENCODING));
+				.append(URLEncoder.encode(token, MoodleServices.ENCODING.toString()));
 		data.append("&")
 				.append(URLEncoder
-						.encode("wsfunction", MoodleServices.ENCODING))
+						.encode("wsfunction", MoodleServices.ENCODING.toString()))
 				.append("=")
 				.append(URLEncoder
-						.encode(functionCall, MoodleServices.ENCODING));
+						.encode(functionCall, MoodleServices.ENCODING.toString()));
 		for (int i = 0; i < groupids.length; i++) {
 			if (groupids[i] < 1) {
 				throw new MoodleRestGroupException();
 			}
 			data.append("&")
 					.append(URLEncoder.encode("groupids[" + i + "]",
-							MoodleServices.ENCODING)).append("=")
+							MoodleServices.ENCODING.toString())).append("=")
 					.append(groupids[i]);
 		}
 		data.trimToSize();
