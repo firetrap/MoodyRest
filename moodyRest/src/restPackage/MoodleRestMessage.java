@@ -18,6 +18,7 @@
 
 package restPackage;
 
+import java.io.IOException;
 import java.io.Serializable;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -259,15 +260,20 @@ public class MoodleRestMessage implements Serializable {
 	 * Method to fetch information about the messaging contacts of the user
 	 * </p>
 	 * 
-	 * @return MoodleContact
+	 * @return MoodleContact[]
 	 * @throws MoodleRestMessageException
 	 * @throws MoodleRestException
 	 */
 	public static MoodleContact[] getContacts()
 			throws MoodleRestMessageException, MoodleRestException {
-		String functionCall = MoodleServices.CORE_MESSAGE_GET_CONTACTS.name();
+		String functionCall = null;
 		StringBuilder data = new StringBuilder();
 		MoodleContact[] contacts = null;
+
+		if (MoodleCallRestWebService.isLegacy())
+			throw new MoodleRestException(MoodleRestException.NO_LEGACY);
+		else
+			functionCall = MoodleServices.CORE_MESSAGE_GET_CONTACTS.name();
 
 		try {
 			if (MoodleCallRestWebService.getAuth() == null)
@@ -290,13 +296,13 @@ public class MoodleRestMessage implements Serializable {
 			MoodleContact contact = null;
 
 			for (int j = 0; j < elements.getLength(); j++) {
-				
+
 				//
 				// instanciate the user if its null
 				if (contact == null)
 					contact = new MoodleContact(Long.valueOf("0"));
 				//
-				
+
 				//
 				// get current "VALUE" node
 				Node node = elements.item(j);
@@ -323,7 +329,8 @@ public class MoodleRestMessage implements Serializable {
 							.getParentNode().getParentNode();
 
 					if ((parentNode != null)
-							&& (parentNode.getNodeName().equalsIgnoreCase("KEY")))
+							&& (parentNode.getNodeName()
+									.equalsIgnoreCase("KEY")))
 						parentNodeName = parentNode.getAttributes()
 								.getNamedItem("name").getNodeValue();
 					//
@@ -333,7 +340,8 @@ public class MoodleRestMessage implements Serializable {
 					MoodleContactState nodeState = null;
 					for (MoodleContactState state : MoodleContactState.values()) {
 						if ((parentNodeName != null)
-								&& (parentNodeName.equalsIgnoreCase(state.name()))) {
+								&& (parentNodeName.equalsIgnoreCase(state
+										.name()))) {
 							nodeState = state;
 							break;
 						}
@@ -345,14 +353,14 @@ public class MoodleRestMessage implements Serializable {
 					contact = null;
 				}
 			}
-			
+
 			// instaciate the array of contacts with the size of the vector
 			contacts = new MoodleContact[vector.size()];
-			
+
 			// Get the parsed contacts to an array
-			for(int i = 0 ; i<vector.size(); i++)
+			for (int i = 0; i < vector.size(); i++)
 				contacts[i] = vector.get(i);
-			
+
 			// Clear vector
 			vector.removeAllElements();
 
@@ -362,5 +370,244 @@ public class MoodleRestMessage implements Serializable {
 		}
 
 		return contacts;
+	}
+
+	/**
+	 * <p>
+	 * Method to that perform actions on the contact provided an id
+	 * </p>
+	 * 
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void actionContact(Long contact, MoodleRestAction action)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		Long[] a = { contact };
+
+		actionContacts(a, action);
+	}
+
+	/**
+	 * <p>
+	 * Method to that perform actions on the contacts provided a list of ids
+	 * </p>
+	 * 
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void actionContacts(Long[] contacts, MoodleRestAction action)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		String functionCall = null;
+		StringBuilder data = new StringBuilder();
+
+		if (MoodleCallRestWebService.isLegacy())
+			throw new MoodleRestException(MoodleRestException.NO_LEGACY);
+		else {
+			switch (action) {
+			case DELETE:
+				functionCall = MoodleServices.CORE_MESSAGE_DELETE_CONTACTS
+						.name();
+				break;
+			case CREATE:
+				functionCall = MoodleServices.CORE_MESSAGE_CREATE_CONTACTS
+						.name();
+				break;
+			case BLOCK:
+				functionCall = MoodleServices.CORE_MESSAGE_BLOCK_CONTACTS
+						.name();
+				break;
+			case UNBLOCK:
+				functionCall = MoodleServices.CORE_MESSAGE_UNBLOCK_CONTACTS
+						.name();
+				break;
+			}
+		}
+
+		try {
+			if (MoodleCallRestWebService.getAuth() == null)
+				throw new MoodleRestUserException();
+			else
+				data.append(MoodleCallRestWebService.getAuth());
+
+			data.append("&");
+			data.append(URLEncoder.encode("wsfunction", MoodleServices.ENCODING
+					.toString().toString()));
+			data.append("=");
+			data.append(URLEncoder.encode(functionCall, MoodleServices.ENCODING
+					.toString().toString()));
+
+			for (int i = 0; i < contacts.length; i++) {
+				if (contacts[i] < 1) {
+					throw new MoodleRestMessageException(
+							MoodleRestMessageException.PARAMETER_RANGE);
+				} else {
+					data.append("&");
+					data.append(URLEncoder.encode("userids[" + i + "]",
+							MoodleServices.ENCODING.toString()));
+					data.append("=");
+					data.append(contacts[i]);
+				}
+			}
+
+			data.trimToSize();
+			MoodleCallRestWebService.call(data.toString());
+
+		} catch (final IOException ex) {
+			Logger.getLogger(MoodleRestMessage.class.getName()).log(
+					Level.SEVERE, null, ex);
+		}
+
+	}
+
+	// core_message_delete_contacts
+	/**
+	 * <p>
+	 * Method to delete the contact from the contacts list of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            id of the contact to delete.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void deleteContact(Long contact)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContact(contact, MoodleRestAction.DELETE);
+	}
+
+	// core_message_delete_contacts
+	/**
+	 * <p>
+	 * Method to delete the provided contacts list from the main contacts list
+	 * of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            ids list of the contacts to delete.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void deleteContacts(Long[] contacts)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContacts(contacts, MoodleRestAction.DELETE);
+	}
+
+	// core_message_create_contacts
+	/**
+	 * <p>
+	 * Method to create the contact in the contacts list of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            id of the contact to create.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void createContact(Long contact)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContact(contact, MoodleRestAction.CREATE);
+	}
+
+	// core_message_create_contacts
+	/**
+	 * <p>
+	 * Method to create the provided contacts list from the main contacts list
+	 * of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            ids list of the contacts to create.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void createContacts(Long[] contacts)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContacts(contacts, MoodleRestAction.CREATE);
+	}
+
+	// core_message_block_contacts
+	/**
+	 * <p>
+	 * Method to block the contact in the contacts list of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            id of the contact to block.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void blockContact(Long contact)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContact(contact, MoodleRestAction.BLOCK);
+	}
+
+	// core_message_block_contacts
+	/**
+	 * <p>
+	 * Method to block the provided contacts list from the main contacts list of
+	 * the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            ids list of the contacts to block.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void block(Long[] contacts)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContacts(contacts, MoodleRestAction.CREATE);
+	}
+
+	// core_message_unblock_contacts
+	/**
+	 * <p>
+	 * Method to unblock the contact in the contacts list of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            id of the contact to unblock.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void unblockContact(Long contact)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContact(contact, MoodleRestAction.UNBLOCK);
+	}
+
+	// core_message_unblock_contacts
+	/**
+	 * <p>
+	 * Method to unblock the provided contacts list from the main contacts list
+	 * of the user
+	 * </p>
+	 * 
+	 * @param the
+	 *            ids list of the contacts to unblock.
+	 * @throws MoodleRestMessageException
+	 * @throws MoodleRestException
+	 * @throws UnsupportedEncodingException
+	 */
+	public static void unblockContacts(Long[] contacts)
+			throws MoodleRestMessageException, UnsupportedEncodingException,
+			MoodleRestException {
+		actionContacts(contacts, MoodleRestAction.UNBLOCK);
 	}
 }

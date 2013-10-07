@@ -239,20 +239,15 @@ public class MoodleContact implements Serializable {
 	 *            content of the node
 	 */
 	public void setMoodleUserContactField(String nodeName, Object content) {
-		if (nodeName.equals("unread") && content != null)
+		if (nodeName.equalsIgnoreCase("unread") && content != null)
 			setUnread(Long.valueOf((String) content));
 
-		if (nodeName.equals("id") && content != null)
-			getContactProfile().setId(Long.valueOf((String) content));
-
-		if (nodeName.equals("fullname") && content != null)
-			getContactProfile().setFullname((String) content);
-
-		if (nodeName.equals("profileimageurlsmall") && content != null)
-			getContactProfile().setProfileImageURLSmall((String) content);
-
-		if (nodeName.equals("profileimageurl") && content != null)
-			getContactProfile().setProfileImageURL((String) content);
+		if ((nodeName.equalsIgnoreCase("id")
+				|| nodeName.equalsIgnoreCase("fullname")
+				|| nodeName.equalsIgnoreCase("profileimageurl") || nodeName
+					.equalsIgnoreCase("profileimageurlsmall"))
+				&& content != null)
+			getContactProfile().setMoodleUserField(nodeName, (String) content);
 
 		if (nodeName.equals("state") && content != null)
 			setState((MoodleContactState) content);
