@@ -568,7 +568,7 @@ public class MoodleRestMessage implements Serializable {
 	 * @throws MoodleRestException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void block(Long[] contacts)
+	public static void blockContacts(Long[] contacts)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
 		actionContacts(contacts, MoodleRestAction.CREATE);
