@@ -34,7 +34,8 @@ import org.w3c.dom.NodeList;
  * Class to call Moodle REST message web services.
  * </p>
  * 
- * @author MoodyProject Team (Thanks to Bill Antonia)
+ * @author Bill Antonia
+ * @contributor SérgioFilipe (MoodyProject Team)
  * 
  */
 public class MoodleRestMessage implements Serializable {

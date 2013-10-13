@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 
  * @see MoodleRestContact
  * @author MoodyProject Team
+ * @contributor SérgioFilipe
  */
 
 public class MoodleContact implements Serializable {
