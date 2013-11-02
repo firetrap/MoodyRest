@@ -382,7 +382,7 @@ public class MoodleRestMessage implements Serializable {
 	 * @throws MoodleRestException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void actionContact(Long contact, MoodleRestAction action)
+	public static void actionContact(Long contact, MoodleContactAction action)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
 		Long[] a = { contact };
@@ -399,7 +399,7 @@ public class MoodleRestMessage implements Serializable {
 	 * @throws MoodleRestException
 	 * @throws UnsupportedEncodingException
 	 */
-	public static void actionContacts(Long[] contacts, MoodleRestAction action)
+	public static void actionContacts(Long[] contacts, MoodleContactAction action)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
 		String functionCall = null;
@@ -479,7 +479,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void deleteContact(Long contact)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContact(contact, MoodleRestAction.DELETE);
+		actionContact(contact, MoodleContactAction.DELETE);
 	}
 
 	// core_message_delete_contacts
@@ -498,7 +498,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void deleteContacts(Long[] contacts)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContacts(contacts, MoodleRestAction.DELETE);
+		actionContacts(contacts, MoodleContactAction.DELETE);
 	}
 
 	// core_message_create_contacts
@@ -516,7 +516,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void createContact(Long contact)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContact(contact, MoodleRestAction.CREATE);
+		actionContact(contact, MoodleContactAction.CREATE);
 	}
 
 	// core_message_create_contacts
@@ -535,7 +535,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void createContacts(Long[] contacts)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContacts(contacts, MoodleRestAction.CREATE);
+		actionContacts(contacts, MoodleContactAction.CREATE);
 	}
 
 	// core_message_block_contacts
@@ -553,7 +553,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void blockContact(Long contact)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContact(contact, MoodleRestAction.BLOCK);
+		actionContact(contact, MoodleContactAction.BLOCK);
 	}
 
 	// core_message_block_contacts
@@ -572,7 +572,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void blockContacts(Long[] contacts)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContacts(contacts, MoodleRestAction.BLOCK);
+		actionContacts(contacts, MoodleContactAction.BLOCK);
 	}
 
 	// core_message_unblock_contacts
@@ -590,7 +590,7 @@ public class MoodleRestMessage implements Serializable {
 	public static void unblockContact(Long contact)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContact(contact, MoodleRestAction.UNBLOCK);
+		actionContact(contact, MoodleContactAction.UNBLOCK);
 	}
 
 	// core_message_unblock_contacts
@@ -609,6 +609,6 @@ public class MoodleRestMessage implements Serializable {
 	public static void unblockContacts(Long[] contacts)
 			throws MoodleRestMessageException, UnsupportedEncodingException,
 			MoodleRestException {
-		actionContacts(contacts, MoodleRestAction.UNBLOCK);
+		actionContacts(contacts, MoodleContactAction.UNBLOCK);
 	}
 }

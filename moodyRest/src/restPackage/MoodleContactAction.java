@@ -1,6 +1,6 @@
 package restPackage;
 
-public enum MoodleRestAction {
+public enum MoodleContactAction {
 	CREATE,
 	DELETE,
 	BLOCK,
