@@ -436,7 +436,7 @@ public class MoodleRestMessage implements Serializable {
 
 			data.append("&");
 			data.append(URLEncoder.encode("wsfunction", MoodleServices.ENCODING
-					.toString().toString()));
+					.toString()));
 			data.append("=");
 			data.append(URLEncoder.encode(functionCall, MoodleServices.ENCODING
 					.toString().toString()));
