@@ -158,6 +158,7 @@ public enum MoodleServices implements Serializable {
 	MOODLE_USER_GET_COURSE_PARTICIPANTS_BY_ID,	
 	MOODLE_USER_DELETE_USERS,	
 	MOODLE_USER_UPDATE_USERS,	
+	MOODLE_USER_GET_PICTURE, //needed for getting user picture 
 
 	// ENROL
 	MOODLE_ENROL_GET_ENROLLED_USERS,	
